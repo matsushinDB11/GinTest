@@ -1,7 +1,41 @@
 FORMAT: 1A
-# Ginテスト
 
-#  日記機能
-{{partial "./src/diary.apib"}}
-{{partial "./src/diaries.apib"}}
-{{partial "./src/diaryLikes.apib"}}
+# Group 日記
+
+## 日記一覧 [/3.0/service/diaries]
+
+### 日記の一覧取得 [GET]
+
++ Parameters
+    + sort: (string, option) - 並び順
+        + Default: createdAt
+    + page: (number, require) - 何ページ目
+
++ Response 200 (application/json)
+
++ Response 400 (application/json)
+
+### 新規投稿 [POST]
+
++ Parameters
+    + title: (string, require) - タイトル
+    + body: (string, require) - 本文
+    + author_id: (string, require) - UserID
+
++ Response 201 (application/json)
+
++ Response 401 (application/json)
+
+## 日記詳細 [/3.0/service/diaries/\{{@id\}]
+
+#### 日記の詳細取得[GET]
+
+#### 日記の更新[PATCH]
+
+#### 日記の削除[DELETE]
+
+## 日記へのいいね機能 [/3.0/service/diaries/{{@id}/like]
+
+### 指定された id の日記にいいねする[POST]
+
+### 指定された id の日記へのいいねを解除[DELETE]
