@@ -1,13 +1,30 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+	"gin-api/contoroller"
+
+	"github.com/gin-gonic/gin"
+)
 
 func main() {
-	r := gin.Default()
-	r.GET("/nyan", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "にゃーん",
+	engine := gin.Default()
+	serviceEngine := engine.Group("/service")
+	{
+		serviceEngine.GET("/", func(c *gin.Context) {
+			c.JSON(200, gin.H{
+				"message": "This is gin_test",
+			})
 		})
-	})
-	r.Run()
+		diaries := serviceEngine.Group("diaries")
+		{
+			diaries.GET("/", contoroller.GetDiariesList)
+			diaries.POST("/", contoroller.PostDiary)
+			diaries.GET("/:id", contoroller.GetDiary)
+			diaries.PATCH("/:id", contoroller.PatchDiary)
+			diaries.DELETE("/:id", contoroller.DeleteDiary)
+			diaries.POST("/:id/likes", contoroller.PostDiaryLikes)
+			diaries.DELETE("/:id/likes", contoroller.DeleteDiaryLikes)
+		}
+	}
+	engine.Run(":3001")
 }
