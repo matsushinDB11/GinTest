@@ -3,5 +3,5 @@ WORKDIR /go_src
 COPY ./ .
 
 RUN go get -u github.com/cosmtrek/air
-
-CMD ["air", "-c", ".air.toml"]
+#
+#CMD ["air", "-c", ".air.toml"]

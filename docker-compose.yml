@@ -1,4 +1,4 @@
-version: 3
+version: "3.8"
 services:
   api:
     container_name: gin_api
@@ -10,35 +10,38 @@ services:
       - DB_PASSWORD=${DB_PASSWORD}
       - DB_DATABASE=${DATABASE}
     volumes:
-      - ./src/: /go_src
+      - ./src:/go_src
     ports:
       - "3001:3001"
-    tty: true
-  doc:
-    container_name: doc
-    build: ./doc
-    volumes:
-      - ./doc/: /api_doc
-    ports:
-      - "3002:3000"
-    tty: true
     command:
-      - aglio -i index.apib --server
-  db:
-    image: mysql:5.7.34
-    command: mysqld --character-set-server=utf8mb4
-    environment:
-      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${DATABASE}
-      MYSQL_USER: ${DB_USER}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
-    volumes:
-      #      - ./db/db-data:/var/lib/mysql
-      #     docker volumeを使ってマウントする
-      - mysql_data:/var/lib/mysql
-      - ./db/init:/docker-entrypoint-initdb.d
-  volumes:
-    mysql_data:
+      - air
+    tty: true
+# aglio がNode14コンテナ上でインストールできないため暫定で使用しない。 ドキュメントはローカルでレンダリングする。
+#  doc:
+#    container_name: doc
+#    build: ./doc
+#    volumes:
+#      - ./doc:/api_doc
+#    ports:
+#      - "3000:3002"
+#    tty: true
+#    command:
+#      - aglio -i index.apib --server
+#  db:
+#    image: mysql:5.7.34
+#    command: mysqld --character-set-server=utf8mb4
+#    environment:
+#      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+#      MYSQL_DATABASE: ${DATABASE}
+#      MYSQL_USER: ${DB_USER}
+#      MYSQL_PASSWORD: ${DB_PASSWORD}
+#    volumes:
+#      #      - ./db/db-data:/var/lib/mysql
+#      #     docker volumeを使ってマウントする
+#      - mysql_data:/var/lib/mysql
+#      - ./db/init:/docker-entrypoint-initdb.d
+#  volumes:
+#    mysql_data:
 
 
 

@@ -1,5 +1,5 @@
-FROM node:14.17.4-buster
+FROM node:carbon-buster
 WORKDIR /api_doc
 COPY ./ .
 
-RUN npm install -g aglio
+RUN npm install -g aglio --unsafe-perm
