@@ -20,15 +20,29 @@ FORMAT: 1A
 + Parameters
     + title: (string, require) - タイトル
     + body: (string, require) - 本文
-    + author_id: (string, require) - UserID
+    + author_id: (number, require) - UserID
 
 + Response 201 (application/json)
 
 + Response 401 (application/json)
 
-## 日記詳細 [/3.0/service/diaries/\{{@id\}]
+## 日記詳細 [/3.0/service/diaries/:id]
 
 #### 日記の詳細取得[GET]
+
++ Parameters
+    + id: (number, required) - メモID
++ Response 200 (application/json)
+    + {
+      "id": 1,
+      "authorID": 1111,
+      "title": "志望企業が決められない",
+      "body": "私はどこに向かっているのか",
+      "likedCount": 3,
+      "liked": false,
+      "createdAt": "2019-09-02T16:16:22+09:00",
+      "updatedAt": "2021-09-04T16:16:22+09:00"
+      }
 
 #### 日記の更新[PATCH]
 

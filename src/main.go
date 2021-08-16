@@ -8,13 +8,11 @@ import (
 
 func main() {
 	engine := gin.Default()
+	engine.GET("/", func(c *gin.Context) {
+		c.String(200, "This is gin_test")
+	})
 	serviceEngine := engine.Group("/service")
 	{
-		serviceEngine.GET("/", func(c *gin.Context) {
-			c.JSON(200, gin.H{
-				"message": "This is gin_test",
-			})
-		})
 		diaries := serviceEngine.Group("diaries")
 		{
 			diaries.GET("/", contoroller.GetDiariesList)
