@@ -13,38 +13,38 @@ FORMAT: 1A
     + page: (number, require) - 何ページ目
 
 + Response 200 (application/json)
-    + {
-      "diaries": [
-      {
-      "id": 1,
-      "authorID": 1111,
-      "title": "志望企業が決められない",
-      "body": "私はどこに向かっているのか",
-      "likedCount": 3,
-      "liked": false,
-      "createdAt": "2019-09-02T16:16:22+09:00",
-      "updatedAt": "2021-09-04T16:16:22+09:00"
-      }, {
-      "id": 2,
-      "authorID": 2212,
-      "title": "最終面接落ちたんご",
-      "body": "どないすればええんや",
-      "likedCount": 6,
-      "liked": true,
-      "createdAt": "2021-09-04T16:20:12+09:00",
-      "updatedAt": "2021-09-12T16:16:22+09:00"
-      }, {
-      "id": 3,
-      "authorID": 7656,
-      "title": "内定でたぞ",
-      "body": "よっしゃー",
-      "likedCount": 5,
-      "liked": false,
-      "createdAt": "2021-09-02T17:09:11+09:00",
-      "updatedAt": "2019-09-23T16:16:22+09:00"
-      }
-      ]
-      }
+  {
+  "diaries": [
+  {
+  "id": 1,
+  "authorID": 1111,
+  "title": "志望企業が決められない",
+  "body": "私はどこに向かっているのか",
+  "likedCount": 3,
+  "liked": false,
+  "createdAt": "2019-09-02T16:16:22+09:00",
+  "updatedAt": "2021-09-04T16:16:22+09:00"
+  }, {
+  "id": 2,
+  "authorID": 2212,
+  "title": "最終面接落ちたんご",
+  "body": "どないすればええんや",
+  "likedCount": 6,
+  "liked": true,
+  "createdAt": "2021-09-04T16:20:12+09:00",
+  "updatedAt": "2021-09-12T16:16:22+09:00"
+  }, {
+  "id": 3,
+  "authorID": 7656,
+  "title": "内定でたぞ",
+  "body": "よっしゃー",
+  "likedCount": 5,
+  "liked": false,
+  "createdAt": "2021-09-02T17:09:11+09:00",
+  "updatedAt": "2019-09-23T16:16:22+09:00"
+  }
+  ]
+  }
 + Response 400 (application/json)
 
 ### 新規投稿 [POST]
@@ -53,18 +53,18 @@ FORMAT: 1A
     + title: (string, require) - タイトル
     + body: (string, require) - 本文
     + author_id: (number, require) - UserID
-        
-        + Response 201 (application/json)
-            + {
-              "id": 4,
-              "authorID": 1111,
-              "title": "今週のジャンプ面白かった",
-              "body": "この新連載は絶対人気出る",
-              "likedCount": 3,
-              "liked": false,
-              "createdAt": "2021-09-02T16:16:22+09:00",
-              "updatedAt": "2021-09-02T16:16:22+09:00"
-              }
+
++ Response 201 (application/json)
+  {
+  "id": 4,
+  "authorID": 1111,
+  "title": "今週のジャンプ面白かった",
+  "body": "この新連載は絶対人気出る",
+  "likedCount": 3,
+  "liked": false,
+  "createdAt": "2021-09-02T16:16:22+09:00",
+  "updatedAt": "2021-09-02T16:16:22+09:00"
+  }
 + Response 401 (application/json)
 
 ## 日記詳細 [/3.0/service/diaries/:id]
@@ -74,16 +74,16 @@ FORMAT: 1A
 + Parameters
     + id: (number, required) - 日記ID
 + Response 200 (application/json)
-    + {
-      "id": 1,
-      "authorID": 1111,
-      "title": "志望企業が決められない",
-      "body": "私はどこに向かっているのか",
-      "likedCount": 3,
-      "liked": false,
-      "createdAt": "2019-09-02T16:16:22+09:00",
-      "updatedAt": "2021-09-04T16:16:22+09:00"
-      }
+  {
+  "id": 1,
+  "authorID": 1111,
+  "title": "志望企業が決められない",
+  "body": "私はどこに向かっているのか",
+  "likedCount": 3,
+  "liked": false,
+  "createdAt": "2019-09-02T16:16:22+09:00",
+  "updatedAt": "2021-09-04T16:16:22+09:00"
+  }
 
 #### 日記の更新[PATCH]
 
@@ -94,36 +94,40 @@ FORMAT: 1A
     + author_id: (number, require) - UserID
 
 + Response 200 (application/json)
-    + {
-      "id": 1,
-      "authorID": 1111,
-      "title": "志望企業が決められない",
-      "body": "決めるしか無い",
-      "likedCount": 6,
-      "liked": false,
-      "createdAt": "2021-09-02T16:16:22+09:00",
-      "updatedAt": "2021-09-07T16:16:22+09:00"
-      }
+  {
+  "id": 1,
+  "authorID": 1111,
+  "title": "志望企業が決められない",
+  "body": "決めるしか無い",
+  "likedCount": 6,
+  "liked": false,
+  "createdAt": "2021-09-02T16:16:22+09:00",
+  "updatedAt": "2021-09-07T16:16:22+09:00"
+  }
 
 #### 日記の削除[DELETE]
+
 + Parameters
     + id: (number, require) - 記事ID
     + author_id: (number, require) - UserID
 + Response 204 (application/json)
 
 ## 日記へのいいね機能 [/3.0/service/diaries/{{@id}/like]
+
 + Parameters
     + id: (number, require) - 記事ID
     + author_id: (number, require) - UserID
 + Response 204 (application/json)
 
 ### 指定された id の日記にいいねする[POST]
+
 + Parameters
     + id: (number, require) - 記事ID
     + author_id: (number, require) - UserID
 + Response 204 (application/json)
 
 ### 指定された id の日記へのいいねを解除[DELETE]
+
 + Parameters
     + id: (number, require) - 記事ID
     + author_id: (number, require) - UserID
