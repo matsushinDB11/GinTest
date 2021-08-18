@@ -19,13 +19,13 @@ func main() {
 			diaries.POST("/", contoroller.PostDiary)
 			diary := diaries.Group(":id")
 			{
-				diary.GET("/:id", contoroller.GetDiary)
-				diary.PATCH("/:id", contoroller.PatchDiary)
-				diary.DELETE("/:id", contoroller.DeleteDiary)
+				diary.GET("", contoroller.GetDiary)
+				diary.PATCH("", contoroller.PatchDiary)
+				diary.DELETE("", contoroller.DeleteDiary)
 				diaryLikes := diary.Group("likes")
 				{
-					diaryLikes.POST("/:id/likes", contoroller.PostDiaryLikes)
-					diaryLikes.DELETE("/:id/likes", contoroller.DeleteDiaryLikes)
+					diaryLikes.POST("", contoroller.PostDiaryLikes)
+					diaryLikes.DELETE("", contoroller.DeleteDiaryLikes)
 				}
 			}
 		}
