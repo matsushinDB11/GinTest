@@ -9,6 +9,7 @@ FORMAT: 1A
 + Parameters
     + order: (string, option) - 並び順
         + Default: createdAt
+        + Option: liked, updatedAt
     + page: (number, require) - 何ページ目
 
 + Response 200 (application/json)
@@ -52,9 +53,18 @@ FORMAT: 1A
     + title: (string, require) - タイトル
     + body: (string, require) - 本文
     + author_id: (number, require) - UserID
-
-+ Response 201 (application/json)
-
+        
+        + Response 201 (application/json)
+            + {
+              "id": 4,
+              "authorID": 1111,
+              "title": "今週のジャンプ面白かった",
+              "body": "この新連載は絶対人気出る",
+              "likedCount": 3,
+              "liked": false,
+              "createdAt": "2021-09-02T16:16:22+09:00",
+              "updatedAt": "2021-09-02T16:16:22+09:00"
+              }
 + Response 401 (application/json)
 
 ## 日記詳細 [/3.0/service/diaries/:id]
@@ -62,7 +72,7 @@ FORMAT: 1A
 #### 日記の詳細取得[GET]
 
 + Parameters
-    + id: (number, required) - メモID
+    + id: (number, required) - 日記ID
 + Response 200 (application/json)
     + {
       "id": 1,
@@ -77,10 +87,44 @@ FORMAT: 1A
 
 #### 日記の更新[PATCH]
 
++ Parameters
+    + id: (number, require) - 記事ID
+    + title: (string, require) - タイトル
+    + body: (string, require) - 本文
+    + author_id: (number, require) - UserID
+
++ Response 200 (application/json)
+    + {
+      "id": 1,
+      "authorID": 1111,
+      "title": "志望企業が決められない",
+      "body": "決めるしか無い",
+      "likedCount": 6,
+      "liked": false,
+      "createdAt": "2021-09-02T16:16:22+09:00",
+      "updatedAt": "2021-09-07T16:16:22+09:00"
+      }
+
 #### 日記の削除[DELETE]
++ Parameters
+    + id: (number, require) - 記事ID
+    + author_id: (number, require) - UserID
++ Response 204 (application/json)
 
 ## 日記へのいいね機能 [/3.0/service/diaries/{{@id}/like]
++ Parameters
+    + id: (number, require) - 記事ID
+    + author_id: (number, require) - UserID
++ Response 204 (application/json)
 
 ### 指定された id の日記にいいねする[POST]
++ Parameters
+    + id: (number, require) - 記事ID
+    + author_id: (number, require) - UserID
++ Response 204 (application/json)
 
 ### 指定された id の日記へのいいねを解除[DELETE]
++ Parameters
+    + id: (number, require) - 記事ID
+    + author_id: (number, require) - UserID
++ Response 204 (application/json)
