@@ -17,11 +17,17 @@ func main() {
 		{
 			diaries.GET("/", contoroller.GetDiariesList)
 			diaries.POST("/", contoroller.PostDiary)
-			diaries.GET("/:id", contoroller.GetDiary)
-			diaries.PATCH("/:id", contoroller.PatchDiary)
-			diaries.DELETE("/:id", contoroller.DeleteDiary)
-			diaries.POST("/:id/likes", contoroller.PostDiaryLikes)
-			diaries.DELETE("/:id/likes", contoroller.DeleteDiaryLikes)
+			diary := diaries.Group(":id")
+			{
+				diary.GET("/:id", contoroller.GetDiary)
+				diary.PATCH("/:id", contoroller.PatchDiary)
+				diary.DELETE("/:id", contoroller.DeleteDiary)
+				diaryLikes := diary.Group("likes")
+				{
+					diaryLikes.POST("/:id/likes", contoroller.PostDiaryLikes)
+					diaryLikes.DELETE("/:id/likes", contoroller.DeleteDiaryLikes)
+				}
+			}
 		}
 	}
 	engine.Run(":3001")
