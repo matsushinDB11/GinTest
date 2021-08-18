@@ -7,12 +7,43 @@ FORMAT: 1A
 ### 日記の一覧取得 [GET]
 
 + Parameters
-    + sort: (string, option) - 並び順
+    + order: (string, option) - 並び順
         + Default: createdAt
     + page: (number, require) - 何ページ目
 
 + Response 200 (application/json)
-
+    + {
+      "diaries": [
+      {
+      "id": 1,
+      "authorID": 1111,
+      "title": "志望企業が決められない",
+      "body": "私はどこに向かっているのか",
+      "likedCount": 3,
+      "liked": false,
+      "createdAt": "2019-09-02T16:16:22+09:00",
+      "updatedAt": "2021-09-04T16:16:22+09:00"
+      }, {
+      "id": 2,
+      "authorID": 2212,
+      "title": "最終面接落ちたんご",
+      "body": "どないすればええんや",
+      "likedCount": 6,
+      "liked": true,
+      "createdAt": "2021-09-04T16:20:12+09:00",
+      "updatedAt": "2021-09-12T16:16:22+09:00"
+      }, {
+      "id": 3,
+      "authorID": 7656,
+      "title": "内定でたぞ",
+      "body": "よっしゃー",
+      "likedCount": 5,
+      "liked": false,
+      "createdAt": "2021-09-02T17:09:11+09:00",
+      "updatedAt": "2019-09-23T16:16:22+09:00"
+      }
+      ]
+      }
 + Response 400 (application/json)
 
 ### 新規投稿 [POST]
