@@ -20,7 +20,7 @@ func main() {
 			diary := diaries.Group(":id")
 			{
 				diary.GET("", contoroller.GetDiary)
-				diary.PATCH("", contoroller.PatchDiary)
+				diary.PATCH("", contoroller.UpdateDiary)
 				diary.DELETE("", contoroller.DeleteDiary)
 				diaryLikes := diary.Group("likes")
 				{

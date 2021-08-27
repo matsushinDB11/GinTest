@@ -16,7 +16,7 @@ func GetDiary(c *gin.Context) {
 		"updatedAt":  "2021-09-04T16:16:22+09:00",
 	})
 }
-func PatchDiary(c *gin.Context) {
+func UpdateDiary(c *gin.Context) {
 	id := c.Param("id")
 	// sample response
 	c.JSON(200, gin.H{
